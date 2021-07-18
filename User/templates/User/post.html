@@ -1,0 +1,21 @@
+{% extends 'User/basic.html' %}
+{% block title %} 
+    Post
+{% endblock title %}
+{% block body %}
+<div class ="container">
+    <div class="row g-5 my-3 mx-4">
+        <div class="col-md-8 border-bottom">
+            <i><h3 class="pb-2 mb-2 fst-italicborder-bottom" >
+                {{post.user}}
+            </h3></i>
+            <span><h6>
+                 {{post.text}}
+            </h6></span>
+            <span><pre>Created at :{{post.created_at}} </pre></span>
+            <span><pre>Updated at:{{post.created_at}}</pre></span>
+           
+        </div>
+    </div>
+</div>
+{% endblock body %}

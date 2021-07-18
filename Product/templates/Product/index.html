@@ -1,0 +1,91 @@
+{% extends 'Product/basic.html' %}
+{% block title %}Home|products{% endblock title %}
+      {% block css %}
+      <style>
+          .col-md-3
+          {
+            display: -webkit-inline-box;
+            margin-left:-4px;
+          }
+
+          .carousel-indicators .active {
+          background-color: blue;
+            }
+
+          .col-md-3 img{
+
+          width:100%;
+          height:auto;
+          }
+
+          body .carousel-indicator li{
+          background-color: blue;
+          }
+
+          body .carousel-indicators{
+          bottom: 0;
+          }
+
+          body .carousel-control-prev-icon,
+          body .carousel-control-next-icon{
+          background-color: blue;
+          }
+          body .carousel-control-prev,
+          body .carousel-control-next {
+            bottom:200px;
+          }
+
+           body .no-padding{
+           padding-left: 0,
+           padding-right: 0;
+      </style>  
+      {% endblock css %} 
+
+{% block body %}
+  <div class="container" >
+    <div id="demo" class="carousel slide my-3" data-bs-ride="carousel">'
+        <ul class="carousel-indicators">
+            <li data-bs-target="#demo{{forloop.counter}}" data-bs-slide-to="0" class="active"></li>
+          {% for i in range %}
+            <li data-bs-target="#demo{{forloop.parentloop.counter}}" data-bs-slide-to="{{i}}" ></li>
+          {% endfor %}
+        </ul>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            
+              {% for i in product %}
+              <div class="col-xs-3 col-sm-3 col-md-3">
+                <div class="card" style="width: 18rem;">
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.product_name}}</h5>
+                    <p class="card-text">Weight :{{i.weight}} gm</p>
+                    <p class="card-text"><b>Price :</b> ₹  {{i.price}}</p>
+                    <p class="card-text">Created Date :{{i.created_at}}</p>
+                    <p class="card-text">Updated Date :{{i.updated_at}}</p>
+                    <a href="#" class="btn btn-primary">Buy</a>
+                  </div>
+                </div>
+              </div>
+
+              {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+          </div> 
+               <div class="carousel-item">
+              {% endif%}
+                
+              {% endfor %}
+
+               </div>
+        </div>
+
+    </div>
+
+        <a class="carousel-control-prev " href="#demo{{forloop.counter}}" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+  </div>
+{% endblock body %}   
